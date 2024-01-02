@@ -38,5 +38,12 @@ app.get('/:word/echo', (req, res) => {
  res.json({echo: req.params.word});
 });
 
+const handlerGetName = (req, res) => {
+ let firstname = req.query.first || '';
+ let lastname = req.query.last || '';
+ res.json({name: `${firstname} ${lastname}`.trim()});
+};
 
- module.exports = app;
+app.route('/name').get(handlerGetName).post(handlerGetName);
+
+module.exports = app;
