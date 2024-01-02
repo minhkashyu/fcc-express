@@ -47,6 +47,14 @@ const handlerGetName = (req, res) => {
  res.json({name: `${firstname} ${lastname}`.trim()});
 };
 
-app.route('/name').get(handlerGetName).post(handlerGetName);
+// app.route('/name').get(handlerGetName).post(handlerGetName);
+
+app.get('/name').get(handlerGetName);
+
+app.post('/name', (req, res) => {
+ let firstname = req.body.first || '';
+ let lastname = req.body.last || '';
+ res.json({name: `${firstname} ${lastname}`.trim()});
+});
 
 module.exports = app;
